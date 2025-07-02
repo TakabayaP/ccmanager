@@ -2,6 +2,7 @@ import React, {useState, useMemo} from 'react';
 import {Box, Text, useInput} from 'ink';
 import TextInput from 'ink-text-input';
 import SelectInput from 'ink-select-input';
+import AutocompleteInput from './AutocompleteInput.js';
 import {shortcutManager} from '../services/shortcutManager.js';
 import {configurationManager} from '../services/configurationManager.js';
 import {generateWorktreeDirectory} from '../utils/worktreeUtils.js';
@@ -123,11 +124,12 @@ const NewWorktree: React.FC<NewWorktreeProps> = ({onComplete, onCancel}) => {
 					</Box>
 					<Box>
 						<Text color="cyan">{'> '}</Text>
-						<TextInput
+						<AutocompleteInput
 							value={branch}
 							onChange={setBranch}
 							onSubmit={handleBranchSubmit}
 							placeholder="e.g., feature/new-feature"
+							suggestions={branches}
 						/>
 					</Box>
 				</Box>
@@ -138,11 +140,12 @@ const NewWorktree: React.FC<NewWorktreeProps> = ({onComplete, onCancel}) => {
 					</Box>
 					<Box>
 						<Text color="cyan">{'> '}</Text>
-						<TextInput
+						<AutocompleteInput
 							value={branch}
 							onChange={setBranch}
 							onSubmit={handleBranchSubmit}
 							placeholder="e.g., feature/new-feature"
+							suggestions={branches}
 						/>
 					</Box>
 					{generatedPath && (
